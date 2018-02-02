@@ -1,47 +1,44 @@
 version: '2'
 services:
-  todoapp:
-    build: ./todoapp
-    container_name: todoapp
-    ports:
-      - '3000:3000'
-    volumes:
-     - ./todoapp:/app
-  todoapi_setup:
-    build: ./todoapi
-    depends_on:
-      - postgres
-    environment:
-      - PASSENGER_APP_ENV=development
-    entrypoint: ./setup.sh
-  todoapi:
-    container_name: todoapi
-    build: ./todoapi
-    depends_on:
-      - postgres
-      - todoapi_setup
+  # todoapp:
+  #   build: ./todoapp
+  #   container_name: todoapp
+  #   ports:
+  #     - '3000:3000'
+  #   volumes:
+  #    - ./todoapp:/app
+  # todoapi_setup:
+  #   build: ./todoapi
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     - PASSENGER_APP_ENV=development
+  #   entrypoint: ./setup.sh
+  ideaboard-api:
+    container_name: ideaboard-api
+    build: .
     environment:
       - PASSENGER_APP_ENV=development
     ports:
       - "80:80"
     volumes:
-      - ./todoapi:/home/app/todoapi
-  postgres:
-    image: postgres:9.6.6
-    container_name: tododb
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_USER=todoapi
-      - POSTGRES_DB=todoapi_development
-    volumes_from:
-      - postgres_data
-  postgres_data:
-      container_name: tododb_data
-      image: postgres:9.6.6
-      volumes:
-        - pgdata:/var/lib/postgresql/data
-      command: /bin/true
+      - .:/home/app/ideaboard-api
+#   postgres:
+#     image: postgres:9.6.6
+#     container_name: tododb
+#     environment:
+#       - POSTGRES_PASSWORD=mysecretpassword
+#       - POSTGRES_USER=todoapi
+#       - POSTGRES_DB=todoapi_development
+#     volumes_from:
+#       - postgres_data
+#   postgres_data:
+#       container_name: tododb_data
+#       image: postgres:9.6.6
+#       volumes:
+#         - pgdata:/var/lib/postgresql/data
+#       command: /bin/true
 
-volumes:
-  pgdata:
-    external: true
+# volumes:
+#   pgdata:
+#     external: true

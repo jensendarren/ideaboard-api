@@ -36,11 +36,11 @@ RUN bundle install
 
 # Copy application into the container and use right permissions: passenger 
 # uses the app user for running the application 
-RUN mkdir /home/app/todoapi 
-COPY . /home/app/todoapi 
+RUN mkdir /home/app/ideaboard-api 
+COPY . /home/app/ideaboard-api 
 RUN usermod -u 1000 app 
-RUN chown -R app:app /home/app/todoapi 
-WORKDIR /home/app/todoapi 
+RUN chown -R app:app /home/app/ideaboard-api 
+WORKDIR /home/app/ideaboard-api 
 
 # Clean up APT when done. 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
