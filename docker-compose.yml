@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/home/app/ideaboard-api
 #   postgres:
-#     image: posdocker exec -it todoapi bashtgres:9.6.6
+#     image: posgres:9.6.6
 #     container_name: tododb
 #     environment:
 #       - POSTGRES_PASSWORD=mysecretpassword
