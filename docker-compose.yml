@@ -1,19 +1,5 @@
 version: '2'
 services:
-  # todoapp:
-  #   build: ./todoapp
-  #   container_name: todoapp
-  #   ports:
-  #     - '3000:3000'
-  #   volumes:
-  #    - ./todoapp:/app
-  # todoapi_setup:
-  #   build: ./todoapi
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     - PASSENGER_APP_ENV=development
-  #   entrypoint: ./setup.sh
   ideaboard-api:
     container_name: ideaboard-api
     build: .
@@ -24,7 +10,7 @@ services:
     volumes:
       - .:/home/app/ideaboard-api
 #   postgres:
-#     image: postgres:9.6.6
+#     image: posdocker exec -it todoapi bashtgres:9.6.6
 #     container_name: tododb
 #     environment:
 #       - POSTGRES_PASSWORD=mysecretpassword
